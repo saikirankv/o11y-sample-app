@@ -1,0 +1,16 @@
+global:
+  email-reply-to: dpxtools@salesforce.com
+  notifications:
+    on_production_branches_only: true
+    slack-channels:
+      - locker-release
+
+stages:
+  build:
+    - npm-setup:
+        yarn-modern: true
+    - step:
+        name: yarn-build
+        image: docker.repo.local.sfdc.net/sfci/docker-images/sfdc_rhel9_nodejs20/sfdc_rhel9_nodejs20_build:latest
+        commands:
+          - yum test
